@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { itemStore } from '@/stores';
-import { Table } from '@/containers';
+import { Table } from '@/components';
 import { Item } from "@/interface";
 
 interface IStickyTableContainerProps {
