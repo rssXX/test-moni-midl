@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import {Item} from "@/interface";
+import {TableCell} from '@/components'
 
 interface ITableProps {
     items: Item[];
@@ -14,53 +15,53 @@ const Table: React.FC<ITableProps> = ({items}) => {
                     className=""
                 >
                     <tr className="h-13">
-                        <th className="sticky left-0 bg-table">Token</th>
-                        <th className="">Created</th>
-                        <th className="">Smarts</th>
-                        <th className="">Cng</th>
-                        <th className="">S. M.</th>
-                        <th className="">Cng</th>
-                        <th className="">TXs</th>
-                        <th className="">Cng</th>
-                        <th className="">Volume</th>
-                        <th className="">Cng</th>
-                        <th className="">Liqudity</th>
-                        <th className="">MKT Cap</th>
-                        <th className="">Cng</th>
-                        <th className="">Holders</th>
-                        <th className="">Cng</th>
-                        <th className="">CV/CR/HNP/LB</th>
-                        <th className="sticky right-0 bg-table"></th>
+                        <TableCell as='th' sticky="left">Token</TableCell>
+                        <TableCell as='th'>Created</TableCell>
+                        <TableCell as='th'>Smarts</TableCell>
+                        <TableCell as='th'>Cng</TableCell>
+                        <TableCell as='th'>S. M.</TableCell>
+                        <TableCell as='th'>Cng</TableCell>
+                        <TableCell as='th'>TXs</TableCell>
+                        <TableCell as='th'>Cng</TableCell>
+                        <TableCell as='th'>Volume</TableCell>
+                        <TableCell as='th'>Cng</TableCell>
+                        <TableCell as='th'>Liqudity</TableCell>
+                        <TableCell as='th'>MKT Cap</TableCell>
+                        <TableCell as='th'>Cng</TableCell>
+                        <TableCell as='th'>Holders</TableCell>
+                        <TableCell as='th'>Cng</TableCell>
+                        <TableCell as='th'>CV/CR/HNP/LB</TableCell>
+                        <TableCell as='th' sticky="right"></TableCell>
                     </tr>
                 </thead>
                 <tbody>
                     {items.map((item) => (
                         <tr key={item.id} className="h-16">
-                            <td className="sticky left-0 bg-table">
+                            <TableCell sticky="left">
                                 {item.name}
-                            </td>
-                            <td className="">{item.createdAt}</td>
-                            <td className="">{item.smartFollowersCount}</td>
-                            <td className="">{item.smartFollowersCountChange}</td>
-                            <td className="">{item.smartMentionsCount}</td>
-                            <td className="">{item.smartMentionsCountChange}</td>
-                            <td className="">{item.txsBuyCount + item.txsSellCount}</td>
-                            <td className="">{item.txsCountChange}</td>
-                            <td className="">{item.volumeBuy.USD + item.volumeSell.USD}</td>
-                            <td className="">{item.volumeChange.USD}</td>
-                            <td className="">{item.liquidity.USD}</td>
-                            <td className="">{item.marketCap.USD}</td>
-                            <td className="">{item.marketCapChange.USD}</td>
-                            <td className="">{item.holdersCount}</td>
-                            <td className="">{item.holdersCountChange}</td>
-                            <td className="">
+                            </TableCell>
+                            <TableCell>{item.createdAt}</TableCell>
+                            <TableCell>{item.smartFollowersCount}</TableCell>
+                            <TableCell>{item.smartFollowersCountChange}</TableCell>
+                            <TableCell>{item.smartMentionsCount}</TableCell>
+                            <TableCell>{item.smartMentionsCountChange}</TableCell>
+                            <TableCell>{item.txsBuyCount + item.txsSellCount}</TableCell>
+                            <TableCell>{item.txsCountChange}</TableCell>
+                            <TableCell>{item.volumeBuy.USD + item.volumeSell.USD}</TableCell>
+                            <TableCell>{item.volumeChange.USD}</TableCell>
+                            <TableCell>{item.liquidity.USD}</TableCell>
+                            <TableCell>{item.marketCap.USD}</TableCell>
+                            <TableCell>{item.marketCapChange.USD}</TableCell>
+                            <TableCell>{item.holdersCount}</TableCell>
+                            <TableCell>{item.holdersCountChange}</TableCell>
+                            <TableCell>
                                 {item.security.map((secItem, index) => (
                                     <span key={index}>{secItem.status ? 'Да' : 'Нет'}</span>
                                 ))}
-                            </td>
-                            <td className="sticky right-0 bg-table">
+                            </TableCell>
+                            <TableCell sticky="right">
                                 Buy
-                            </td>
+                            </TableCell>
                         </tr>
                     ))}
                 </tbody>
