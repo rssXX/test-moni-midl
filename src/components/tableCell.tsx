@@ -11,7 +11,7 @@ interface TableCellProps extends React.HTMLAttributes<HTMLTableCellElement> {
 
 const TableCell: React.FC<TableCellProps> = ({
     as = "td",
-    align = "center",
+    align,
     sticky,
     withDivider,
     className,
@@ -29,7 +29,7 @@ const TableCell: React.FC<TableCellProps> = ({
                     "text-left": align === "left",
                     "text-center": align === "center",
                     "text-right": align === "right",
-                    "sticky left-0 bg-table": sticky === "left",
+                    "sticky left-0 bg-table pl-4": sticky === "left",
                     "sticky right-0 bg-table": sticky === "right",
                     "border-l border-border": withDivider,
                 },
