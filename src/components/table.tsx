@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import {Item} from "@/interface";
-import {TableCell} from '@/components'
+import {Account, TableCell} from '@/components'
 
 interface ITableProps {
     items: Item[];
@@ -15,7 +15,7 @@ const Table: React.FC<ITableProps> = ({items}) => {
                     className=""
                 >
                     <tr className="h-13">
-                        <TableCell as='th' sticky="left">Token</TableCell>
+                        <TableCell as='th' align="left" sticky="left">Token</TableCell>
                         <TableCell as='th'>Created</TableCell>
                         <TableCell as='th'>Smarts</TableCell>
                         <TableCell as='th'>Cng</TableCell>
@@ -38,7 +38,7 @@ const Table: React.FC<ITableProps> = ({items}) => {
                     {items.map((item) => (
                         <tr key={item.id} className="h-16">
                             <TableCell sticky="left">
-                                {item.name}
+                                <Account name={item.name} logoUrl={item.logoUrl} address={item.address} links={item.links}/>
                             </TableCell>
                             <TableCell>{item.createdAt}</TableCell>
                             <TableCell>{item.smartFollowersCount}</TableCell>
