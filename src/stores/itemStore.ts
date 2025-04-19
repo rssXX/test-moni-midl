@@ -3,6 +3,7 @@ import { Item } from '@/interface';
 
 class ItemStore {
     items: Item[] = [];
+    isLoading = true;
 
     constructor() {
         makeAutoObservable(this);
@@ -10,6 +11,10 @@ class ItemStore {
 
     hydrate(items: Item[]) {
         this.items = items;
+    }
+
+    setLoading(isLoading: boolean) {
+        this.isLoading = isLoading;
     }
 }
 

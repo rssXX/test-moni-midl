@@ -11,9 +11,9 @@ const HomePage = async () => {
     const data: ResponseData = await res.json()
 
     return (
-        <>
+        <main>
             <StickyTableContainer items={data.items}/>
-        </>
+        </main>
     );
 }
 

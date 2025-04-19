@@ -8,6 +8,7 @@
     --color-error: #FF5F5F;
     --color-table-bg: #111112;
     --color-border: #27272A;
+    --color-border-primary: #1C1C1E;
 }
 
 @theme {
@@ -18,6 +19,7 @@
     --color-error: var(--color-error);
     --color-table: var(--color-table-bg);
     --color-border: var(--color-border);
+    --color-border-primary: var(--color-border-primary);
 }
 
 body {

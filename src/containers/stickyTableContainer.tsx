@@ -12,9 +12,10 @@ interface IStickyTableContainerProps {
 const StickyTableContainer: React.FC<IStickyTableContainerProps> = ({ items }) => {
     useEffect(() => {
         itemStore.hydrate(items);
+        itemStore.setLoading(false)
     }, [items]);
 
-    return <Table items={itemStore.items} />;
+    return <Table items={itemStore.items} isLoading={itemStore.isLoading} />;
 };
 
 export default observer(StickyTableContainer);

@@ -31,7 +31,7 @@ export type Link = {
 export interface Item {
     id: number;
     address: string;
-    logoUrl: string;
+    logoUrl?: string;
     name: string;
     symbol: string;
     chain: Chain;

@@ -7,15 +7,21 @@ interface IAccountProps extends Pick<Item, 'name' | 'logoUrl' | 'address' | 'lin
 
 const Account: React.FC<IAccountProps> = ({name, logoUrl, address, links}) => {
     return (
-        <div className={`flex items-center gap-2.5 pt-3.5 pb-4.5 pr-6 w-[158px]`}>
+        <div className={`flex items-center gap-2.5 pr-6 w-[158px]`}>
             <div className={`w-6 h-6 relative flex-shrink-0`}>
-                <Image
-                    src={logoUrl}
-                    alt={`${name} avatar`}
-                    loading="lazy"
-                    className={`rounded-full`}
-                    fill
-                />
+                {
+                    logoUrl ? (
+                        <Image
+                            src={logoUrl}
+                            alt={`${name} avatar`}
+                            loading="lazy"
+                            className={`rounded-full`}
+                            fill
+                        />
+                    ) : (
+                        <div className="w-full h-full bg-gray-300 rounded-full"></div>
+                    )
+                }
             </div>
             <div className={`flex flex-col min-w-0`}>
                 <div className={`text-sm text-text truncate`}>{name}</div>
