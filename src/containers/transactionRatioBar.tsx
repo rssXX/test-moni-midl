@@ -6,10 +6,14 @@ interface ITransactionRatioBarProps {
 }
 
 const TransactionRatioBar: React.FC<ITransactionRatioBarProps> = ({ buyCount, sellCount }) => {
-    const total = buyCount + sellCount;
-
-    const buyPercentage = total > 0 ? (buyCount / total) * 100 : 50;
-    const sellPercentage = 100 - buyPercentage;
+    const { buyPercentage, sellPercentage } = React.useMemo(() => {
+        const total = buyCount + sellCount;
+        const buy = total > 0 ? (buyCount / total) * 100 : 50;
+        return {
+            buyPercentage: buy,
+            sellPercentage: 100 - buy,
+        };
+    }, [buyCount, sellCount]);
 
     return (
         <div className="flex h-1 rounded-full overflow-hidden mt-1.5">
