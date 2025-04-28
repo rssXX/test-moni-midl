@@ -10,6 +10,8 @@ interface TableCellProps extends React.HTMLAttributes<HTMLTableCellElement> {
     dividerColor?: 'border' | 'border-primary';
     fontWeight?: 'medium' | 'semibold';
     width?: number;
+    isAtStart?: boolean;
+    isAtEnd?: boolean;
 }
 
 const TableCell: React.FC<TableCellProps> = ({
@@ -22,6 +24,8 @@ const TableCell: React.FC<TableCellProps> = ({
     dividerColor = 'border',
     fontWeight = 'medium',
     width,
+    isAtStart = false,
+    isAtEnd = false,
     ...rest
 }) => {
     const Component = as;
@@ -37,13 +41,16 @@ const TableCell: React.FC<TableCellProps> = ({
                     "text-left": align === "left",
                     "text-center": align === "center",
                     "text-right": align === "right",
-                    "sticky left-0 bg-table pl-4 z-10": sticky === "left",
-                    "sticky right-0 bg-table pr-4 pl-8 z-10": sticky === "right",
+                    "sticky left-0 bg-table pl-4 z-20": sticky === "left",
+                    "sticky right-0 bg-table pr-4 pl-8 z-20": sticky === "right",
+                    "before:content-[''] before:absolute before:left-[99%] before:top-0 before:h-full before:w-[80px] before:bg-table before:mask-r-from-5% before:!translate-none before:transition-opacity before:opacity-0": sticky === "left",
+                    "before:content-[''] before:absolute before:right-[99%] before:!top-0 before:!h-full before:w-[80px] before:bg-table before:mask-l-from-5% before:!translate-none before:transition-opacity before:opacity-0": sticky === "right",
                     "before:absolute before:left-0 before:top-1/2 before:h-1/2 before:w-px before:-translate-y-1/2": withDivider,
                     "before:bg-border": dividerColor === 'border',
                     "before:bg-border-primary": dividerColor === 'border-primary',
                     "font-medium": fontWeight === 'medium',
                     "font-semibold": fontWeight === 'semibold',
+                    "before:opacity-100": isAtStart || isAtEnd,
                 },
                 className
             )}

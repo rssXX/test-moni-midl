@@ -6,7 +6,8 @@ import { Account, TableCell, ColorNumber } from '@/components'
 import { formatTimeAgo, roundingToInteger, formatNumberWithSpaces } from '@/utils'
 import { TransactionRatioBar } from '@/containers'
 import { SubtractIcon, SuccessIcon, CrossIcon, ZapIcon } from '@/assets/icons'
-import { SCELETON_ROWS } from "@/consts";
+import { SCELETON_ROWS } from "@/consts"
+import { useScrollEdge } from '@/hooks'
 
 interface ITableProps {
     items: Item[];
@@ -14,9 +15,12 @@ interface ITableProps {
 }
 
 const Table: React.FC<ITableProps> = ({ items, isLoading }) => {
+    const containerRef = React.useRef<HTMLDivElement | null>(null);
+    const { isAtStart, isAtEnd } = useScrollEdge(containerRef);
+
     return (
         <div className="flex justify-center my-6">
-            <div className="mx-4 overflow-x-auto bg-table rounded-lg border border-border max-w-[calc(100vw-2rem)]">
+            <div ref={containerRef} className="mx-4 overflow-x-auto bg-table rounded-lg border border-border max-w-[calc(100vw-2rem)]">
                 <table className="table-fixed mx-auto">
                     <colgroup>
                         <col />
@@ -44,6 +48,7 @@ const Table: React.FC<ITableProps> = ({ items, isLoading }) => {
                             fontWeight="semibold"
                             align="left"
                             sticky="left"
+                            isAtStart={!isAtStart}
                         >
                             Token
                         </TableCell>
@@ -62,7 +67,7 @@ const Table: React.FC<ITableProps> = ({ items, isLoading }) => {
                         <TableCell as='th' className="text-muted" align="right" fontWeight="semibold">Holders</TableCell>
                         <TableCell as='th' className="text-muted" align="left" fontWeight="semibold" withDivider dividerColor="border-primary">Cng</TableCell>
                         <TableCell as='th' className="text-muted" fontWeight="semibold">CV/CR/HNP/LB</TableCell>
-                        <TableCell as='th' className="text-muted" fontWeight="semibold" sticky="right"></TableCell>
+                        <TableCell as='th' className="text-muted" fontWeight="semibold" sticky="right" isAtEnd={!isAtEnd}></TableCell>
                     </tr>
                     </thead>
                     <tbody>
@@ -96,7 +101,7 @@ const Table: React.FC<ITableProps> = ({ items, isLoading }) => {
                             <>
                                 {items.map((item) => (
                                     <tr key={item.id}>
-                                        <TableCell sticky="left">
+                                        <TableCell sticky="left" isAtStart={!isAtStart}>
                                             <Account name={item.name} logoUrl={item.logoUrl} address={item.address} links={item.links}/>
                                         </TableCell>
                                         <TableCell className="text-sm font-medium">
@@ -174,7 +179,7 @@ const Table: React.FC<ITableProps> = ({ items, isLoading }) => {
                                                 ))}
                                             </div>
                                         </TableCell>
-                                        <TableCell sticky="right">
+                                        <TableCell sticky="right" isAtEnd={!isAtEnd}>
                                             <a
                                                 href="#"
                                                 className="px-4 py-2 rounded text-sm bg-border inline-flex items-center gap-2"
